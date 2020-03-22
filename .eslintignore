@@ -1,0 +1,8 @@
+# ignoring sequelize auto generated
+models/
+config/
+migrations/
+seeders/
+
+# ignoring distribution folder
+dist/
