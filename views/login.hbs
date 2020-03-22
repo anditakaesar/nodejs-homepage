@@ -1,0 +1,18 @@
+<main class="container-fluid">
+  <div class="row py-2 mb-5">
+    <div class="container p-5">
+      <h1 class="display-4 my-5">{{ data.title }}</h1>
+      <form method="POST" action="/user/login">
+        <div>
+        <input type="email" class="form-control mb-2" id="emailinput" name="email" placeholder="email" />
+        </div>
+        <div>
+        <input type="password" class="form-control mb-2" id="passwordinput" name="password" placeholder="password" />
+        </div>
+        <div>
+        <button type="submit" class="btn btn-primary mb-2">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

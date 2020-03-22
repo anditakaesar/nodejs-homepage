@@ -1,7 +1,11 @@
 <footer class="container p-5">
   <div class="row px-3">
     <div class="col-sm-12 col-md-6 mb-2">
-      <div class="list-group-flush"><a class="list-group-item list-group-item-action" href="#">Linkedin</a><a class="list-group-item list-group-item-action" href="#">Github</a><a class="list-group-item list-group-item-action" href="#">Twitter</a><a class="list-group-item list-group-item-action" href="#">Telegram</a></div>
+      <div class="list-group-flush">
+        {{#each data.socials}}
+        <a class="list-group-item list-group-item-action" href="{{this.href}}">{{this.title}}</a>
+        {{/each}}
+      </div>
     </div>
     <div class="col-sm-12 col-md-6">
       <div class="card">
@@ -11,7 +15,11 @@
   </div>
   <div class="row justify-content-center p-3 bg-light mt-5">
     <div class="col">
+      {{#if data.footcopy}}
+      <p class="text-center">&copy; <a class="text-info" href="{{data.footcopy.href}}">{{data.footcopy.title}}</a> {{data.footcopy.year}}</p>
+      {{else}}
       <p class="text-center">&copy; <a class="text-info" href="#">anditakaesar</a> 2020</p>
+      {{/if}}
     </div>
   </div>
 </footer>

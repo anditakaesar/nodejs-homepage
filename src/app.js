@@ -2,34 +2,22 @@ import express from 'express'
 import helmet from 'helmet'
 import compression from 'compression'
 import { json, urlencoded } from 'body-parser'
-import exphbs from 'express-handlebars'
 import session from 'express-session'
 import path from 'path'
 import cors from 'cors'
-import { env } from './env'
 import logger from './logger'
+import { requireAuth } from './utils'
+import { hbs, sessionConfig } from './config'
+import getDefaultContext from './context'
 
 const app = express()
-
-const hbs = exphbs.create({
-  extname: 'hbs',
-  defaultLayout: 'defaultlayout.hbs',
-  layoutsDir: path.join(__dirname, '../views/layouts'),
-  partialsDir: path.join(__dirname, '../views/partials'),
-})
 
 // middlewares
 app.use(helmet())
 app.use(compression())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(session({
-  name: env.SESSION_NAME,
-  secret: env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: env.SESSION_COOKIE_AGE, secure: env.SESSION_COOKIE_SECURE },
-}))
+app.use(session(sessionConfig))
 app.use(cors())
 
 // static path
@@ -42,7 +30,8 @@ app.engine('hbs', hbs.engine)
 
 // common data context
 app.use((req, res, next) => {
-  res.data = {}
+  res.data = getDefaultContext()
+
   if (req.session.user) {
     req.user = req.session.user
   } else {
@@ -56,6 +45,8 @@ app.get('/', (req, res) => {
   res.data.title = 'Hello HBS'
   res.render('index', { data: res.data })
 })
+app.use('/user', require('./routers/user.router').default)
+app.use('/admin', requireAuth, require('./routers/admin.router').default)
 
 // error handler
 app.use((err, req, res, next) => {
@@ -70,14 +61,15 @@ app.use((err, req, res, next) => {
     res.status(err.status).json({
       message: err.message,
     })
+  } else {
+    next()
   }
-  next()
 })
 
 // 404
 app.use((req, res) => {
   logger.warn('request made', {
-    user: req.user,
+    user: req.user.username,
     ip: req.ip,
     url: req.originalUrl,
   })
