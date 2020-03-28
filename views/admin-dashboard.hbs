@@ -1,3 +1,78 @@
-<main>
-  <h2>Dashboard</h2>
+<main class="container-fluid">
+  <div class="row pt-2">
+    <div class="container">
+      <h3>General</h3>
+    </div>
+  </div>
+  <div class="row py-2 mb-3">
+    <div class="container form">
+      <div class="form-group">
+        <label for="maintitle">Main Title</label>
+        <input class="form-control form-control-lg" id="maintitle" type="text" name="maintitle">
+      </div>
+      <div class="form-group">
+        <label for="workstitle">Works Title</label>
+        <input class="form-control form-control-lg" id="workstitle" type="text" name="workstitle">
+      </div>
+      <div class="form-group">
+        <label for="shortdesc">Short Description</label>
+        <textarea class="form-control" id="shortdesc" name="shortdesc" cols="30" rows="8"></textarea>
+      </div>
+      <button class="btn btn-primary btn-lg" type="submit">Save</button>
+      <hr>
+    </div>
+  </div>
+  <div class="row pt-2">
+    <div class="container">
+      <h3>Social Links
+        <button class="btn btn-outline-success">Add</button>
+      </h3>
+    </div>
+  </div>
+  <div class="row py-2 mb-5">
+    <div class="container">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h4>Linkedin</h4>
+          <div class="form-group">
+            <input class="form-control" disabled="true" value="https://linkedin.com">
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning" type="button">Edit</button>
+            <button class="btn btn-danger" type="button">Delete</button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h4>Twitter</h4>
+          <div class="form-group">
+            <input class="form-control" disabled="true" value="https://twitter.com">
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning" type="button">Edit</button>
+            <button class="btn btn-danger" type="button">Delete</button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h4>Github</h4>
+          <div class="form-group">
+            <input class="form-control" disabled="true" value="https://github.com">
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning" type="button">Edit</button>
+            <button class="btn btn-danger" type="button">Delete</button>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h4>Telegram</h4>
+          <div class="form-group">
+            <input class="form-control" disabled="true" value="https://telegram.com">
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning" type="button">Edit</button>
+            <button class="btn btn-danger" type="button">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </main>

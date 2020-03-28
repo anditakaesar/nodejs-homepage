@@ -6,10 +6,9 @@ router.use((req, res, next) => {
   res.data.title = 'Dashboard'
   res.data.topnavs = [
     { title: 'Dashboard', href: '/admin/dashboard' },
-    { title: 'General', href: '/admin/general' },
     { title: 'Works', href: '/admin/works' },
   ]
-
+  res.data.user = req.user
   next()
 })
 
@@ -22,14 +21,9 @@ router.get('/dashboard', (req, res) => {
   res.render('admin-dashboard', { layout: 'adminlayout', data: res.data })
 })
 
-router.get('/general', (req, res) => {
-  res.data.title = 'Admin - General'
-  res.render('admin-general', { layout: 'adminlayout', data: res.data })
-})
-
 router.get('/works', (req, res) => {
   res.data.title = 'Admin - Works'
-  res.render('admin-general', { layout: 'adminlayout', data: res.data })
+  res.render('admin-works', { layout: 'adminlayout', data: res.data })
 })
 
 export default router

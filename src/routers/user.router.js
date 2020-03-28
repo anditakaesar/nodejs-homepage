@@ -42,4 +42,12 @@ router.post('/login', (req, res, next) => {
   })
 })
 
+router.get('/logout', (req, res) => {
+  req.user = null
+  res.data.user = null
+  req.session.destroy()
+  res.data.title = 'Login Again'
+  res.render('login', { data: res.data })
+})
+
 export default router
